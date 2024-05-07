@@ -10,20 +10,18 @@ body{
     height: 100%;
 }
 
-.offset-left {
-    margin-left: -180px;
-}
+
 
 .margen-left{
     margin-left: -215px;
 }
 
-.offset-graf{
+.margen-graf{
     margin-left: 90px;
 }
 
-.offset-btn {
-    margin-left: -170px;
+.margen-btn {
+    margin-left: 60px;
 
 }
 
