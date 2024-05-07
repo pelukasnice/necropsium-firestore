@@ -10,7 +10,9 @@ body{
     height: 100%;
 }
 
-
+.margen-btn-tabla{
+    margin-left: 10rem;
+}
 
 .margen-left{
     margin-left: -215px;
