@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Necropsium</title>
+    <!-- CSS BOOTSTRAP DATATABLE -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
+    <!-- CSS BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- BOOTSTRAP ICONS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- STYLES.CSS -->
+    <link rel="stylesheet" href="./css/styles.css">
+    <!-- CSS TOASTR -->
+    <link rel="stylesheet" href="plugin/toastr.min.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <div class="container-fluid offset-left">
+            <h1 class="mt-4">Necropsias</h1>
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item"><a href="estadistica.html">Estadistica</a></li>
+                <li class="breadcrumb-item active">Necropsias 2024</li>
+            </ol>
+        </div>
+
+        <!-- BOTON ACTIVA MODAL -->
+
+        <div class="mb-4 offset-btn ">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Agregar Necropsia
+            </button> <br>
+
+        </div>
+
+        <!-- MODAL INGRESO CADAVER -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Necropsia</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="cadaver-form">
+
+                            <!-- AÑO, LEGAJO, EXPEDIENTE, OF -->
+                            <div class="row">
+                                <div class="col col-md-3">
+                                    <label for="anio">Año</label>
+                                    <select name="anio_necropsia" id="anio_necropsia" class="form-control">
+                                        <option value="2024">2024</option>
+                                    </select>
+                                </div>
+                                <div class="col col-md-3">
+                                    <label for="legajo">Legajo</label>
+                                    <input type="text" id="legajo" name="numero_legajo" class="form-control"
+                                        placeholder="Ej 247/24">
+                                </div>
+
+                                <div class="col col-md-4">
+                                    <label for="expediente">Expediente</label>
+                                    <input type="text" id="expediente" name="expediente" class="form-control"
+                                        placeholder="P-124.487/23">
+                                </div>
+                                <div class="col col-md-2">
+                                    <label for="oficina fiscal">Of.Fiscal</label>
+                                    <input type="text" id="oficina_fiscal" name="oficina_fiscal" class="form-control"
+                                        placeholder="10">
+                                </div>
+                            </div> <br>
+
+                            <!-- APELLIDO, NOMBRE, EDAD -->
+                            <div class="row">
+                                <div class="col col-md-5">
+                                    <label for="apellido">Apellido</label>
+                                    <input type="text" name="apellido" id="apellido" class="form-control">
+                                </div>
+                                <div class="col col-md-5">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" name="nombre" id="nombre" class="form-control">
+                                </div>
+                                <div class="col col-md-2">
+                                    <label for="edad">Edad</label>
+                                    <input type="text" name="edad" id="edad" class="form-control">
+                                </div>
+                            </div><br>
+
+                            <!-- DNI, SEXO -->
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label for="dni">DNI</label>
+                                    <input type="text" name="dni" id="dni" class="form-control">
+                                </div>
+
+                                <div class="col-md-7 d-flex align-items-center">
+                                    <label class="margenSexo">Sexo: </label>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="masculino"
+                                            value="masculino" required>
+                                        <label class="form-check-label" for="masculino">Masc</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="femenino"
+                                            value="femenino" required>
+                                        <label class="form-check-label" for="femenino">Fem</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="sexo" id="otro" value="otro"
+                                            required>
+                                        <label class="form-check-label" for="otro">Otro</label>
+                                    </div>
+                                </div>
+                            </div> <br>
+
+                            <!-- FECHA Y HORA DE INGRESO -->
+                            <div class="row">
+                                <div class="col ">
+                                    <label for="fecha_ingreso">Fecha Ingreso</label>
+                                    <input type="date" id="fecha_ingreso" name="fecha_ingreso" class="form-control"
+                                        required>
+                                </div>
+                                <div class="col ">
+                                    <label for="hora_ingreso">Hora Ingreso</label>
+                                    <input type="time" id="hora_ingreso" name="hora_ingreso" class="form-control"
+                                        required>
+                                </div>
+
+                            </div><br>
+
+                            <!-- PERITOS -->
+                            <div class="row">
+                                <div class="col col-md-4">
+                                    <label for="perito">Perito</label>
+                                    <select id="perito" name="perito" class="form-control" required>
+                                        <option value="">--Seleccionar--</option>
+                                        <option value="Perito A">Perito A</option>
+                                        <option value="Perito B">Perito B</option>
+                                        <option value="Perito C">Perito C</option>
+                                        <option value="Perito D">Perito D</option>
+                                        <option value="Perito F">Perito F</option>
+                                        <option value="Perito G">Perito G</option>
+                                        <option value="Perito H">Perito H</option>
+                                        <option value="Perito I">Perito I</option>
+                                        <option value="Perito J">Perito J</option>
+                                        <option value="Perito K">Perito K</option>
+                                        <option value="Perito M">Perito M</option>
+                                        <option value="Perito L">Perito L</option>
+                                        <option value="Perito N">Perito N</option>
+                                    </select>
+                                </div>
+
+                                <!-- CAUSA DE MUERTE -->
+                                <div class="col col-md-4">
+                                    <label for="causa">Causa Muerte</label>
+                                    <select id="causa" name="causa" class="form-control" required>
+                                        <option value="">--Seleccionar--</option>
+                                        <option value="Enfermedad Natural">ENFERMEDAD NATURAL</option>
+                                        <option value="Arma de Fuego">ARMA DE FUEGO</option>
+                                        <option value="Arma Blanca">ARMA BLANCA</option>
+                                        <option value="Accidente Transito">ACCIDENTE DE TRANSITO</option>
+                                        <option value="Ahorcadura">AHORCADURA</option>
+                                        <option value="Quemadura">QUEMADURA</option>
+                                        <option value="Restos Oseos">RESTOS OSEOS</option>
+                                        <option value="Examen Externo">EXAMEN EXTERNO</option>
+                                        <option value="Feto">FETO</option>
+                                        <option value="Recien Nacido">RECIEN NACIDO</option>
+                                        <option value="Mala Praxis">MALA PRAXIS</option>
+                                        <option value="Gas-Monoxido">GAS/MONOXIDO</option>
+                                        <option value="Sumersion-Inmersion">SUMERSION/INMERSION</option>
+                                        <option value="Causa Indeterminada">CAUSA INDETERMINADA</option>
+                                        <option value="Venenos-Toxicos">VENENOS/TOXICOS</option>
+                                        <option value="Traumatismos">TRAUMATISMOS</option>
+                                        <option value="Electricidad">ELECTRICIDAD</option>
+                                        <option value="Accidente Casual">ACCIDENTE CASUAL</option>
+                                        <option value="Andinismo">ANDINISMO</option>
+                                        <option value="Precipitacion-Caida">PRECIPITACION/CAIDA</option>
+                                        <option value="Broncoaspiracion">BRONCOASPIRACION</option>
+                                        <option value="Estrangulamiento">ESTRANGULAMIENTO</option>
+                                        <option value="Sofocacion">SOFOCACION</option>
+                                    </select>
+                                </div>
+
+                                <!-- LOCALIDAD-->
+                                <div class="col col-md-4">
+                                    <label for="localidad">Localidad</label>
+                                    <select name="localidad" id="localidad" class="form-control">
+                                        <option value="">--Seleccionar--</option>
+                                        <option value="Capital">Capital</option>
+                                        <option value="Las Heras">Las Heras</option>
+                                        <option value="Guaymallen">Guaymallen</option>
+                                        <option value="Godoy Cruz">Godoy Cruz</option>
+                                        <option value="Maipu">Maipu</option>
+                                        <option value="Lujan de Cuyo">Lujan de Cuyo</option>
+                                        <option value="Lavalle">Lavalle</option>
+                                        <option value="Otro">Otro</option>
+                                    </select>
+                                </div>
+                            </div><br>
+
+                            <!-- OBSERVACIONES  -->
+                            <div class="row">
+                                <div class="col ">
+                                    <label for="observaciones">Observaciones</label>
+                                    <textarea class="form-control" rows="3" name="observaciones"
+                                        placeholder="Escribe tus observaciones aquí" id="observaciones"></textarea>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <button type="submit" id="btnGuardar" class="btn btn-primary">Guardar Necro</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TABLA  -->
+        <div class="container offset-left">
+            <div class="card shadow d-flex justify-content-center" style="width: 105em;">
+                <div class="card-header">
+                    <i class="fas fa-table me-1"></i>
+                    Necropsias 2024
+                </div>
+                <div class="card-body" style="width: 105em;">
+                    <table class="table table-striped table-hover" id="tabla-cadaver">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Legajo</th>
+                                <th class="text-center">Expediente</th>
+                                <th class="text-center">Of.Fiscal</th>
+                                <th class="text-center col-2">Nombre y Apellido</th>
+                                <th class="text-center">Edad</th>
+                                <th class="text-center">Dni</th>
+                                <th class="text-center">Causa fallecimiento</th>
+                                <th class="text-center">Fecha Ingreso</th>
+                                <th class="text-center">Estado</th>
+                                <th class="text-center">Perito</th>
+                                <th class="text-center">Observaciones</th>
+                                <th class="text-center">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------------------------------- MODAL OBSERVACIONES -------------------------------------->
+
+    <div class="modal fade" id="obsModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-------------------------------------- MODAL ENTREGA -------------------------------------->
+
+    <div class="modal fade" id="entregaModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Entrega de Cadaver</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <!-- FECHA Y HORA DE ENTREGA -->
+                    <form id="entrega-form">                        
+                        <div class="row">
+                            <div class="col">
+                                <label for="fecha_entrega">Fecha Entrega</label>
+                                <input type="date" id="fechaEntrega" name="fecha_entrega" class="form-control" required>
+                            </div>
+                            <div class="col">
+                                <label for="hora_entrega">Hora Entrega</label>
+                                <input type="time" id="horaEntrega" name="hora_entrega" class="form-control" required>
+                            </div>
+                        </div><br>
+
+                        <!-- COCHERIA -->
+                        <div class="mb-3">
+                            <label for="selectCoche" class="form-label">Cochería</label>
+                            <select class="form-select" id="nombreCocheria">
+                                <option selected disabled>Seleccione una cochería</option>
+                                <option value="Cocheria A">Cocheria A</option>
+                                <option value="Cocheria B">Cocheria B</option>
+                                <option value="Cocheria C">Cocheria C</option>
+                            </select>
+                        </div>
+
+                        <!-- DESTINO FINAL -->
+                        <div class="mb-3">
+                            <label for="selectDestino" class="form-label">Destino</label>
+                            <select class="form-select" id="destino">
+                                <option selected disabled>Seleccione un destino</option>
+                                <option value="cremacion">Cremación</option>
+                                <option value="inhumacion">Inhumación</option>
+                            </select>
+                        </div>
+
+                        <!-- AYTES MEDICOS -->
+                        <div class="mb-3">
+                            <label for="selectAyudante" class="form-label">Ayudante Médico</label>
+                            <select class="form-select" id="ayteEntrega">
+                                <option selected disabled>Seleccione Ayte Médico</option>
+                                <option value="AyteMed A">AyteMed A</option>
+                                <option value="AyteMed B">AyteMed B</option>
+                                <option value="AyteMed C">AyteMed C</option>
+                            </select>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button type="submit" id="btn-actualizar" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-------------------------------------- MODAL VER -------------------------------------->
+
+    <div class="modal fade" id="verModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="eliminar">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JQUERY -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <!-- DATATABLE -->
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+    <!-- TOASTR -->
+    <script src="plugin/toastr.min.js"></script>
+    <!-- BOOTSTRAP -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <!-- INDEX.JS -->
+    <script src="./js/index.js" type="module"></script>
+
+</body>
+
+</html>
