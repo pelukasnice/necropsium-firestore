@@ -1,0 +1,41 @@
+body{
+    background: #EFEFEF;
+}
+
+.icono-tabla {
+    font-size: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+/*.margen-btn-tabla{
+    margin-left: 10rem;
+}*/
+
+.margen-left{
+    margin-left: -215px;
+}
+
+.margen-graf{
+    margin-left: 90px;
+}
+
+.margen-btn {
+    margin-left: 60px;
+
+}
+
+.margenSexo{
+    margin-right: 20px;
+}
+
+.marginGraf{
+    margin-top: 60px;
+}
+
+.entregados {
+    font-size: 2em;
+}
+
